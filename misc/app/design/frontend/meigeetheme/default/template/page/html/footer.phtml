@@ -1,0 +1,52 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<footer id="footer">
+    <div class="footer-columns-wrapper">
+        <div class="container_12">
+            <div class="grid_12">
+                <?php if($this->getChildHtml('custom_footer') or $this->getChildHtml('social_links')): ?>
+                <div class="grid_3 alpha">
+                    <?php // Predefined Static Block
+                    if ($static_html = $this->getChildHtml('custom_footer')):
+                        echo '<div class="custom_footer">'.$static_html.'</div>';
+                    endif; ?>
+                    <?php // Predefined Static Block
+                    if ($static_html = $this->getChildHtml('social_links')):
+                        echo $static_html;
+                    endif; ?>
+                </div>
+                <?php endif; ?>
+                <?php // Predefined Static Block
+                if ($static_html = $this->getChildHtml('custom_footer_2')):
+                    echo $static_html;
+                endif; ?>
+                <?php echo $this->getChildHtml('contactForm') ?>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="footer-bottom-wrapper">
+        <div class="container_12">
+            <div class="grid_12">
+            <?php echo $this->getChildHtml('cms_footer_links') ?>
+            <?php echo $this->getChildHtml('footer_links') ?>
+            <div class="clear"></div>
+            <address><?php echo $this->getCopyright() ?></address>
+            <?php echo $this->getChildHtml('currency') ?>
+			<?php if($this->getChildHtml('store_language') and $this->getChildHtml('currency')){echo '<div class="footer-blocks-divider"></div>';} ?>
+            <?php echo $this->getChildHtml('store_language') ?>
+            <div class="clear"></div>
+            <?php echo $this->getChildHtml('store_switcher') ?>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</footer>

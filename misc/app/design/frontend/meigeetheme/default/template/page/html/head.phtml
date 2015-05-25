@@ -1,0 +1,191 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php 
+/*****/
+$appearance = MAGE::helper('ThemeOptions')->getThemeOptions('appearance');
+/*****/
+?>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+
+<!-- Font Replacement -->
+<?php if ($appearance['font'] == 2): ?>
+<link href='http://fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $appearance['gfont']); ?>:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+<?php endif; ?>
+<!-- End Font Replacement -->
+
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+
+<!-- Font Replacement -->
+<?php if ($appearance['font'] == 2): ?>
+<?php if ($appearance['default_sizes'] == 0): ?>
+<style>
+#footer .footer-columns-wrapper h3, .toolbar, .page-title h1, .page-title h2, aside.sidebar section header h2, .product-view .product-prev, .product-view .product-next, aside.sidebar .header-slider-container .iosSlider h2, .header-slider-container .iosSlider h3, .header-slider-container .iosSlider .action-btn, .category-slider-container .iosSlider h2, .category-slider-container .iosSlider .action-btn, .catalog-product-view .product-banner h2, .catalog-product-view .product-banner p.text, .home-tabs .tabs li a, .my-wishlist .link-edit{font-family: '<?php echo $appearance['gfont']; ?>', sans-serif; font-size:<?php echo $appearance['fontsize']; ?>px !important; line-height: <?php echo $appearance['fontsize']; ?>px !important; font-weight: <?php echo $appearance['fontweight']; ?> !important;}
+</style>
+<?php else: ?>
+<style>
+#footer .footer-columns-wrapper h3, .toolbar, .page-title h1, .page-title h2, aside.sidebar section header h2, .product-view .product-prev, .product-view .product-next, aside.sidebar .header-slider-container .iosSlider h2, .header-slider-container .iosSlider h3, .header-slider-container .iosSlider .action-btn, .category-slider-container .iosSlider h2, .category-slider-container .iosSlider .action-btn, .catalog-product-view .product-banner h2, .catalog-product-view .product-banner p.text, .home-tabs .tabs li a, .my-wishlist .link-edit{font-family: '<?php echo $appearance['gfont']; ?>', sans-serif;}
+</style>
+<?php endif; ?>
+<?php endif; ?>
+<!-- End Font Replacement -->
+<?php if ($appearance['customcolors'] == 1): ?>
+<!-- Theme Colors -->
+<style>	
+	/*  Site Background */
+	body{background-color: #<?php echo $appearance['sitebg']; ?>;}
+	
+	/* Skin Color #1 */
+	#login-holder form .link-box a,
+	.ajax-index-options .product-view .product-shop .availability span,
+	a:hover,
+	.price,
+	header#header .top-cart .actions a,
+	#footer .custom_footer a,
+	nav.breadcrumbs li strong,
+	.sorter .view-mode strong.list,
+	.sorter .view-mode strong.grid,
+	.sorter .view-mode a.list:hover,
+	.pager .limiter ul li a:hover,
+	.pager .limiter ul li a.selected,
+	.pager .pages .current,
+	.products-list .availability span,
+	aside.sidebar .actions a,
+	.block-list li.item .product-name a:hover,
+	.tags-list li a:hover,
+	.product-view .product-shop .product-box .availability span,
+	.product-view .product-shop .product-code,
+	.meigee-tabs li.active a,
+	.meigee-tabs li.active a:hover,
+	.block-related .block-content .block-subtitle a,
+	.catalog-product-view .box-reviews ul li small span,
+	.catalog-product-view .box-reviews .full-review,
+	.cart .totals .checkout-types a,
+	#cart-accordion h3.accordion-title:hover span,
+	#cart-accordion h3.accordion-title.active span,
+	.cart-table .subtotal-price .price,
+	.cart-table tfoot button:hover span,
+	.my-wishlist .buttons-set button:hover span,
+	.product-view .product-prev:hover,
+	.product-view .product-next:hover,
+	.products-list li.item .product-code,
+	.sidebar-switcher .on:hover,
+	.sidebar-switcher .off:hover,
+	.sidebar-switcher .on.active,
+	.sidebar-switcher .off.active,
+	.header-slider-container .iosSlider h2,
+	.header-slider-container .iosSlider h2 span,
+	.header-slider-container .iosSlider #item3 h2 span,
+	.category-slider-container .iosSlider h2 span,
+	.home-tabs .tabs li a:hover,
+	.home-tabs .tabs li.current a{color:#<?php echo $appearance['maincolor']; ?>;}
+	
+	#review-buttons-container button.btn-checkout > span,
+	.onepagecheckout-index-index #onepagecheckout_loginbox button.button:hover > span,
+	.onepagecheckout-index-index #onepagecheckout_forgotbox button.button:hover > span,
+	aside.sidebar section.block-layered-nav #slider-range .ui-slider-range,
+	#login-holder form .actions button > span,
+	.title-divider span,
+	button.button:hover > span,
+	.more-views .prev:hover,
+	.more-views .next:hover,
+	.block-related .prev:hover,
+	.block-related .next:hover,
+	.slider-container .prev:hover,
+	.slider-container .next:hover,
+	.header-slider-container .iosSlider .prev:hover,
+	.header-slider-container .iosSlider .next:hover,
+	.catalog-product-view .box-reviews .data-table thead,
+	#toTop,
+	#toTopHover,
+	.header-slider-container .iosSlider .action-btn,
+	.header-slider-container .iosSlider .slider-bnt-close:hover,
+	.category-slider-container .iosSlider .action-btn,
+	.category-slider-container .iosSlider .prev:hover,
+	.category-slider-container .iosSlider .next:hover,
+	.category-slider-container .iosSlider .slider-bnt-close:hover,
+	#footer .footer-columns-wrapper h3.active span,
+	header#header .top-cart.active,
+	header#header .top-cart .inner-wrapper,
+	header#header .top-cart .mobile-indent,
+	header#header .menu-button:hover,
+	header#header .menu-button.active,
+	header#header .nav-container.mobile,
+	#nav > li > ul,
+	#nav > li.over > a,
+	#nav > li.active > a,
+	#nav li ul.shown-sub,
+	#nav li ul.level1.shown-sub{background-color:#<?php echo $appearance['maincolor']; ?>;}
+	
+	.meigee-tabs li a:hover,
+	.meigee-tabs li.active a,
+	.meigee-tabs li.active a:hover{border-color:#<?php echo $appearance['maincolor']; ?>;}
+	
+	header#header .top-cart.active,
+	header#header .top-cart .inner-wrapper,
+	header#header .top-cart .mobile-indent,
+	header#header .menu-button:hover,
+	header#header .menu-button.active,
+	header#header .nav-container.mobile,
+	#nav > li > ul,
+	#nav > li.over > a,
+	#nav > li.active > a,
+	#nav li ul.shown-sub,
+	#nav li li.level1.touched ul,
+	#nav li ul.level1.shown-sub{
+	    background-color:rgba(<?php echo MAGE::helper('ThemeOptions')->HexToRGB($appearance['maincolor']) ?>, 0.8);
+	}
+	
+	.more-views .prev:hover,
+	.more-views .next:hover,
+	.block-related .prev:hover,
+	.block-related .next:hover,
+	.slider-container .prev:hover,
+	.slider-container .next:hover,
+	.header-slider-container .iosSlider .prev:hover,
+	.header-slider-container .iosSlider .next:hover,
+	.header-slider-container .iosSlider .action-btn,
+	.header-slider-container .iosSlider .slider-bnt-close:hover,
+	.category-slider-container .iosSlider .prev:hover,
+	.category-slider-container .iosSlider .next:hover,
+	.category-slider-container .iosSlider .slider-bnt-close:hover,
+	#footer .footer-columns-wrapper h3.active span{background-color:rgba(<?php echo MAGE::helper('ThemeOptions')->HexToRGB($appearance['maincolor']) ?>, 0.8);}
+	
+	
+	@media only screen and (max-width: 767px){
+	    header#header .top-cart:hover,
+	    table.cart-table tfoot td button:hover > span,
+	    .my-wishlist .buttons-set button:hover > span{background-color:#<?php echo $appearance['maincolor']; ?>;}
+	
+	    header#header .top-cart:hover{background-color:rgba(<?php echo MAGE::helper('ThemeOptions')->HexToRGB($appearance['maincolor']) ?>, 0.8);}
+	}
+	
+
+</style>
+<!-- Theme Colors -->
+<?php endif; ?>

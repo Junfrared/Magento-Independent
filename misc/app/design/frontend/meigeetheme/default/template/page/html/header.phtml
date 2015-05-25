@@ -1,0 +1,170 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+    $customlogo = MAGE::helper('ThemeOptions')->getThemeOptions('customlogo');
+    $mediaurl = MAGE::helper('ThemeOptions')->getThemeOptions('mediaurl');
+     
+
+
+    $category = Mage::registry('current_category');
+    $product  = Mage::registry('current_product');
+    if ($category) {
+      $catId =  $category->getId();
+      $staticBlock = trim($this->getLayout()->createBlock('cms/block')->setBlockId('category_slider_' . $catId)->toHtml());
+    }
+
+    if ($product) {
+      $productId  = $product->getId();
+      $staticProductBlock = trim($this->getLayout()->createBlock('cms/block')->setBlockId('product_banner_' . $productId)->toHtml());
+    }
+
+?>
+<header id="header">
+    <div class="container_12 top-container">
+        <div class="grid_12">
+           <?php if ($customlogo['logo_status'] == 0): ?>
+                <h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+                <?php else:?>
+                <h1 class="logo"><strong><?php echo $customlogo['logo_alt']; ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $customlogo['logo_alt']; ?>" class="logo"><img src="<?php echo $mediaurl.$customlogo['logo']; ?>" alt="<?php echo $customlogo['logo_alt']; ?>" /></a></h1>
+            <?php endif; ?>
+            <p class="welcome-msg"><?php echo $this->getWelcome() ?><?php echo $this->getAdditionalHtml() ?></p>
+            <?php echo $this->getChildHtml('cart_sidebar') ?>
+            <?php echo $this->getChildHtml('topLinks') ?>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="header-wrapper">
+        <div class="container_12">
+            <div class="grid_12">
+                <?php echo $this->getChildHtml('topMenu') ?>
+                <div class="menu-button"></div>
+                <?php echo $this->getChildHtml('topSearch') ?>
+                <div class="clear"></div>
+                <?php echo $this->getChildHtml('topContainer'); ?>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <?php if($this->getIsHomePage()): ?>
+        <?php echo $this->getChildHtml('header_slider_container') ?>
+    <?php elseif (Mage::app()->getFrontController()->getRequest()->getControllerName() == 'category' and $staticBlock): ?>
+        <div class="category-slider-container">
+    <div class="iosSlider">
+        <?php
+        if(!empty($staticBlock)){
+            echo $staticBlock;
+        }
+        ?>
+    <div class="container_12">
+        <div class = 'next'></div>
+        <div class = 'prev unselectable'></div>
+    </div>
+    </div>
+</div>
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    jQuery('.iosSlider').iosSlider({
+      responsiveSlideWidth: true,
+      snapToChildren: true,
+      desktopClickDrag: true,
+      infiniteSlider: true,
+      navSlideSelector: '.slideSelectors .button-item',
+      navNextSelector: '.iosSlider .next',
+      navPrevSelector: '.iosSlider .prev',
+      onSlideComplete: slideComplete,
+      onSliderLoaded: sliderLoaded,
+      onSlideChange: slideChange,
+      <?php if($sliderConfig ['autoSlide']): ?>autoSlide: <?php echo $sliderConfig ['autoSlide']; ?><?php endif; ?>
+      <?php if($sliderConfig ['autoSlideTimer']): ?>, autoSlideTimer: <?php echo $sliderConfig ['autoSlideTimer']; ?><?php endif; ?>
+      <?php if($sliderConfig ['autoSlideTransTimer']): ?>, autoSlideTransTimer: <?php echo $sliderConfig ['autoSlideTransTimer']; endif; ?>
+      <?php if($sliderConfig ['startAtSlide']): ?>, startAtSlide: <?php echo $sliderConfig ['startAtSlide']; endif; ?>
+      <?php if($sliderConfig ['desktopClickDrag']): ?>, desktopClickDrag: <?php echo $sliderConfig ['desktopClickDrag']; endif; ?>
+      <?php if($sliderConfig ['infiniteSlider']): ?>, infiniteSlider: <?php echo $sliderConfig ['infiniteSlider']; endif; ?>
+    });
+    
+    
+    function slideChange(args) {
+        jQuery('.slideSelectors .button-item').removeClass('selected');
+        jQuery('.slideSelectors .button-item:eq(' + args.currentSlideNumber + ')').addClass('selected');
+    }
+    
+    function slideComplete(args) {
+            
+          /* Animation */
+          jQuery(args.sliderObject).find('h2').attr('style', '');   
+          jQuery(args.sliderObject).find('p.container_12').attr('style', '');
+          
+          /* left caption */
+          if(jQuery(args.currentSlideObject).hasClass('left-caption')){
+            jQuery(args.currentSlideObject).children('h2').animate({
+                left: '50%',
+                opacity: '1'
+              }, 500, 'easeOutQuint');
+          }
+          if(jQuery(args.currentSlideObject).hasClass('left-caption')){
+            jQuery(args.currentSlideObject).children('p.container_12').animate({
+                left: '50%',
+                opacity: '1'
+              }, 950, 'easeOutQuint');
+          }
+         
+         /* right caption */
+         if(jQuery(args.currentSlideObject).hasClass('right-caption')){
+            jQuery(args.currentSlideObject).children('h2').animate({
+                right: '50%',
+                opacity: '1'
+              }, 500, 'easeOutQuint');
+          }
+          if(jQuery(args.currentSlideObject).hasClass('right-caption')){
+            jQuery(args.currentSlideObject).children('p.container_12').animate({
+                right: '50%',
+                opacity: '1'
+              }, 950, 'easeOutQuint');
+          } 
+            
+      }
+    
+    function sliderLoaded(args) {
+        slideComplete(args);
+        slideChange(args);
+    }
+    
+    jQuery('.iosSlider div.item').each(function(){
+        jQuery(this).css('backgroundImage', 'url('+ jQuery(this).find('a img').attr('src') +')');
+    });
+    
+    jQuery('.content-wrapper').addClass('category-slider');
+    
+  });
+</script>
+    <?php endif; ?>
+     
+    <?php
+    if(Mage::app()->getFrontController()->getRequest()->getControllerName() == "product" and !$staticProductBlock and $this->getChildHtml('top_banner')): ?>
+        <div class="top-banner">
+            <?php echo $this->getChildHtml('top_banner') ?>
+        </div>
+    <?php 
+    elseif (isset($staticProductBlock)): echo $staticProductBlock; ?>
+    <?php endif; ?>
+     <?php if(Mage::getStoreConfig('meigee_general/loginajax/status')): ?>
+		<script type="text/javascript">
+			/* Login ajax */
+			jQuery('.top-link-login').on('click', function(){
+				ajaxLogin("<?php echo $this->getUrl('meigeeactions/login/') ?>", false);
+				return false;
+			});
+		</script>
+	<?php endif; ?>
+</header>

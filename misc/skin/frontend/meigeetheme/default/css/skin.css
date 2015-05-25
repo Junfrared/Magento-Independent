@@ -1,0 +1,152 @@
+/**
+ * Skin
+ */
+
+/*======Skin Images ======*/
+.pager .pages li a.i-previous{background-image:url(../images/i_previous.gif);}
+.pager .pages li a.i-next{background-image:url(../images/i_next.gif);}
+.sorter .sort-by .asc{background-image:url(../images/i_asc.gif);}
+.sorter .sort-by .desc{background-image:url(../images/i_desc.gif);}
+.my-wishlist input.quantity-decrease,
+.my-wishlist input.quantity-increase,
+.add-to-cart input.quantity-decrease,
+.add-to-cart input.quantity-increase,
+.cart-table input.quantity-decrease,
+.cart-table input.quantity-increase{
+    background-image:url(../images/qt_arr.gif);
+}
+span.label-new {
+    background-image:url(../images/label_new.png);
+}
+
+/*======Site Bg=======*/
+body{background-color:#FFF;}
+
+/*======Skin Color #1=======*/
+#login-holder form .link-box a,
+.ajax-index-options .product-view .product-shop .availability span,
+a:hover,
+.price,
+header#header .top-cart .actions a,
+#footer .custom_footer a,
+nav.breadcrumbs li strong,
+.sorter .view-mode strong.list,
+.sorter .view-mode strong.grid,
+.sorter .view-mode a.list:hover,
+.pager .limiter ul li a:hover,
+.pager .limiter ul li a.selected,
+.pager .pages .current,
+.products-list .availability span,
+aside.sidebar .actions a,
+.block-list li.item .product-name a:hover,
+.tags-list li a:hover,
+.product-view .product-shop .product-box .availability span,
+.product-view .product-shop .product-code,
+.meigee-tabs li.active a,
+.meigee-tabs li.active a:hover,
+.block-related .block-content .block-subtitle a,
+.catalog-product-view .box-reviews ul li small span,
+.catalog-product-view .box-reviews .full-review,
+.cart .totals .checkout-types a,
+#cart-accordion h3.accordion-title:hover span,
+#cart-accordion h3.accordion-title.active span,
+.cart-table .subtotal-price .price,
+.cart-table tfoot button:hover span,
+.my-wishlist .buttons-set button:hover span,
+.product-view .product-prev:hover,
+.product-view .product-next:hover,
+.products-list li.item .product-code,
+.sidebar-switcher .on:hover,
+.sidebar-switcher .off:hover,
+.sidebar-switcher .on.active,
+.sidebar-switcher .off.active,
+.header-slider-container .iosSlider h2,
+.header-slider-container .iosSlider h2 span,
+.header-slider-container .iosSlider #item3 h2 span,
+.category-slider-container .iosSlider h2 span,
+.home-tabs .tabs li a:hover,
+.home-tabs .tabs li.current a{color:#ff0030;}
+
+#review-buttons-container button.btn-checkout > span,
+.onepagecheckout-index-index #onepagecheckout_loginbox button.button:hover > span,
+.onepagecheckout-index-index #onepagecheckout_forgotbox button.button:hover > span,
+aside.sidebar section.block-layered-nav #slider-range .ui-slider-range,
+#login-holder form .actions button > span,
+.title-divider span,
+button.button:hover > span,
+.more-views .prev:hover,
+.more-views .next:hover,
+.block-related .prev:hover,
+.block-related .next:hover,
+.slider-container .prev:hover,
+.slider-container .next:hover,
+.header-slider-container .iosSlider .prev:hover,
+.header-slider-container .iosSlider .next:hover,
+.catalog-product-view .box-reviews .data-table thead,
+#toTop,
+#toTopHover,
+.header-slider-container .iosSlider .action-btn,
+.header-slider-container .iosSlider .slider-bnt-close:hover,
+.category-slider-container .iosSlider .action-btn,
+.category-slider-container .iosSlider .prev:hover,
+.category-slider-container .iosSlider .next:hover,
+.category-slider-container .iosSlider .slider-bnt-close:hover,
+#footer .footer-columns-wrapper h3.active span,
+header#header .top-cart.active,
+header#header .top-cart .inner-wrapper,
+header#header .top-cart .mobile-indent,
+header#header .menu-button:hover,
+header#header .menu-button.active,
+header#header .nav-container.mobile,
+#nav > li > ul,
+#nav > li.over > a,
+#nav > li.active > a,
+#nav li ul.shown-sub,
+#nav li ul.level1.shown-sub{background-color:#ff0030;}
+
+.meigee-tabs li a:hover,
+.meigee-tabs li.active a,
+.meigee-tabs li.active a:hover{border-color:#ff0030;}
+
+header#header .top-cart.active,
+header#header .top-cart .inner-wrapper,
+header#header .top-cart .mobile-indent,
+header#header .menu-button:hover,
+header#header .menu-button.active,
+header#header .nav-container.mobile,
+#nav > li > ul,
+#nav > li.over > a,
+#nav > li.active > a,
+#nav li ul.shown-sub,
+#nav li li.level1.touched ul,
+#nav li ul.level1.shown-sub{
+    background-color:rgba(255, 0, 48, 0.8);
+}
+
+.more-views .prev:hover,
+.more-views .next:hover,
+.block-related .prev:hover,
+.block-related .next:hover,
+.slider-container .prev:hover,
+.slider-container .next:hover,
+.header-slider-container .iosSlider .prev:hover,
+.header-slider-container .iosSlider .next:hover,
+.header-slider-container .iosSlider .action-btn,
+.header-slider-container .iosSlider .slider-bnt-close:hover,
+.category-slider-container .iosSlider .prev:hover,
+.category-slider-container .iosSlider .next:hover,
+.category-slider-container .iosSlider .slider-bnt-close:hover,
+#footer .footer-columns-wrapper h3.active span{background-color:rgba(255, 0, 48, 0.8);}
+
+
+@media only screen and (max-width: 767px){
+    header#header .top-cart:hover,
+    table.cart-table tfoot td button:hover > span,
+    .my-wishlist .buttons-set button:hover > span{background-color:#ff0030;}
+
+    header#header .top-cart:hover{background-color:rgba(255, 0, 48, 0.8);}
+}
+
+/**
+ * Skin
+ */

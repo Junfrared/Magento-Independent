@@ -1,0 +1,129 @@
+<?php 
+/*****/
+$sliderConfig = MAGE::helper('ThemeOptions')->getThemeOptions('headerslider');
+/*****/
+$show = 0;
+if ($sliderConfig ['enabled']):
+
+  /**/
+  if ($sliderConfig['onlyhome']):
+    if (Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms'):
+      $show = 1;
+    endif;
+  else:
+    $show = 1;
+  endif; 
+  /**/
+
+if ($show): ?>
+<div class="header-slider-container">
+	<div class="container">
+		<div class="iosSlider">
+			<?php echo $this->getChildHtml(); ?>
+			<div class="container_12">
+				<div class = 'next'></div>
+				<div class = 'prev unselectable'></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+  jQuery(window).load(function(){
+  
+	//Slider Container Ratio
+	jQuery('.header-slider-container .iosSlider .slider .item a').css('display', 'block');
+	var slider_container = jQuery('.header-slider-container .container');
+	var slider_img =  jQuery('.header-slider-container .iosSlider .slider .item img:first');
+	var ratio = Math.round((slider_img.height()/slider_img.width())*100);
+	slider_container.css('padding-bottom', ratio + '%');
+	jQuery('.header-slider-container .iosSlider .slider .item a').css('display', 'none');
+	
+  
+    jQuery('.iosSlider').iosSlider({
+      responsiveSlideWidth: true,
+      snapToChildren: true,
+      desktopClickDrag: true,
+      infiniteSlider: true,
+      navSlideSelector: '.slideSelectors .button-item',
+      navNextSelector: '.iosSlider .next',
+      navPrevSelector: '.iosSlider .prev',
+      onSlideComplete: slideComplete,
+	  onSliderLoaded: sliderLoaded,
+	  onSlideChange: slideChange
+      <?php if(isset($sliderConfig ['autoSlide'])): ?>, autoSlide: <?php echo $sliderConfig ['autoSlide']; ?><?php endif; ?>
+      <?php if(isset($sliderConfig ['autoSlideTimer'])): ?>, autoSlideTimer: <?php echo $sliderConfig ['autoSlideTimer']; ?><?php endif; ?>
+	  <?php if(isset($sliderConfig ['autoSlideTransTimer'])): ?>, autoSlideTransTimer: <?php echo $sliderConfig ['autoSlideTransTimer']; endif; ?>
+	  <?php if(isset($sliderConfig ['desktopClickDrag'])): ?>, desktopClickDrag: <?php echo $sliderConfig ['desktopClickDrag']; endif; ?>
+	  <?php if(isset($sliderConfig ['infiniteSlider'])): ?>, infiniteSlider: <?php echo $sliderConfig ['infiniteSlider']; endif; ?>
+    });
+    
+	
+	function slideChange(args) {
+	    jQuery('.slideSelectors .button-item').removeClass('selected');
+	    jQuery('.slideSelectors .button-item:eq(' + args.currentSlideNumber + ')').addClass('selected');
+	}
+	
+	function slideComplete(args) {
+			
+		  /* Animation */
+		  jQuery(args.sliderObject).find('h2').attr('style', '');
+		  jQuery(args.sliderObject).find('h3').attr('style', '');
+		  jQuery(args.sliderObject).find('p.container_12').attr('style', '');
+		  
+		  /* left caption */
+		  if(jQuery(args.currentSlideObject).hasClass('left-caption')){
+			jQuery(args.currentSlideObject).children('h2').animate({
+				left: '50%',
+				opacity: '1'
+			  }, 500, 'easeOutQuint');
+		  }
+		  if(jQuery(args.currentSlideObject).hasClass('left-caption')){
+			jQuery(args.currentSlideObject).children('h3').animate({
+				left: '50%',
+				opacity: '1'
+			  }, 800, 'easeOutQuint');
+		  }
+		  if(jQuery(args.currentSlideObject).hasClass('left-caption')){
+			jQuery(args.currentSlideObject).children('p.container_12').animate({
+				left: '50%',
+				opacity: '1'
+			  }, 950, 'easeOutQuint');
+		  }
+		 
+		 /* right caption */
+	     if(jQuery(args.currentSlideObject).hasClass('right-caption')){
+			jQuery(args.currentSlideObject).children('h2').animate({
+				right: '50%',
+				opacity: '1'
+			  }, 500, 'easeOutQuint');
+		  }
+		  if(jQuery(args.currentSlideObject).hasClass('right-caption')){
+			jQuery(args.currentSlideObject).children('h3').animate({
+				right: '50%',
+				opacity: '1'
+			  }, 800, 'easeOutQuint');
+		  }
+		  if(jQuery(args.currentSlideObject).hasClass('right-caption')){
+			jQuery(args.currentSlideObject).children('p.container_12').animate({
+				right: '50%',
+				opacity: '1'
+			  }, 950, 'easeOutQuint');
+		  } 
+			
+	  }
+	
+	function sliderLoaded(args) {
+		slideComplete(args);
+		slideChange(args);
+	}
+	
+	jQuery('.iosSlider div.item').each(function(){
+		jQuery(this).css('backgroundImage', 'url('+ jQuery(this).find('a img').attr('src') +')');
+	});
+	
+	
+  });
+</script>
+    <?php 
+  endif;
+endif;
